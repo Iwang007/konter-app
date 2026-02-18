@@ -712,7 +712,7 @@ function UpsertProduct(patch: any) {
       // update stock for aksesoris only
       const nextProducts = prev.products.map((p: any) => {
         if (sale.tipe !== "Aksesoris") return p;
-        const it = sale.items?.find((x) => x.productId === p.id);
+        const it = sale.items?.find((x : any) => x.productId === p.id);
         if (!it) return p;
         if (typeof p.stok !== "number") return p;
         const qty = clampNum(it.qty, 0);
