@@ -727,13 +727,19 @@ function UpsertProduct(patch: any) {
     });
   }
 
- function deleteSale(idv: string | number) {
-  setState((prev: any) => ({
-    ...prev,
-    sales: prev.sales.filter((s: any) => s.id !== idv),
-  }));
-}
+type ServiceOrderPatch = { id: string } & Record<string, any>;
 
+function upsertService(patch: ServiceOrderPatch) {
+  setState((prev: any) => {
+    const exists = prev.serviceOrders.some((s: any) => s.id === patch.id);
+    return {
+      ...prev,
+      serviceOrders: exists
+        ? prev.serviceOrders.map((s: any) => (s.id === patch.id ? { ...s, ...patch } : s))
+        : [patch, ...prev.serviceOrders],
+    };
+  });
+}
   function upsertService(patch) {
     setState((prev) => {
       const exists = prev.serviceOrders.some((s) => s.id === patch.id);
