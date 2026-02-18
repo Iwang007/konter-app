@@ -368,16 +368,23 @@ type PillProps = {
   variant?: PillVariant;
 };
 
-function Pill({ children, variant = "default" }: PillProps) {
+function Pill({
+  children,
+  variant = "default",
+}: {
+  children: React.ReactNode;
+  variant?: "default" | "ok" | "warn" | "bad";
+}) {
   const cls =
     variant === "ok"
       ? "bg-emerald-50 text-emerald-700 border-emerald-200"
       : variant === "warn"
       ? "bg-amber-50 text-amber-700 border-amber-200"
-      : variant === "danger"
+      : variant === "bad"
       ? "bg-rose-50 text-rose-700 border-rose-200"
       : "bg-muted text-foreground border-border";
-  return <span className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs ${cls}`}>{children}</span>;
+
+  return <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs ${cls}`}>{children}</span>;
 }
 
 function moneyInputProps() {
@@ -681,17 +688,17 @@ function UpsertProduct(patch: any) {
   }));
 }
 
-  function UpsertCustomer(patch: any) {
-  setState((prev: any) => {
-    const exists = prev.customers.some((c: any) => c.id === patch.id);
-    return {
-      ...prev,
-      customers: exists
-        ? prev.customers.map((c: any) => (c.id === patch.id ? { ...c, ...patch } : c))
-        : [patch, ...prev.customers],
-    };
-  });
-}
+  function upsertCustomer(patch) {
+    setState((prev) => {
+      const exists = prev.customers.some((c) => c.id === patch.id);
+      return {
+        ...prev,
+        customers: exists
+          ? prev.customers.map((c) => (c.id === patch.id ? { ...c, ...patch } : c))
+          : [{ ...patch, createdAt: Date.now() }, ...prev.customers],
+      };
+    });
+  }
 
   function deleteCustomer(idv) {
     setState((prev) => ({ ...prev, customers: prev.customers.filter((c) => c.id !== idv) }));
