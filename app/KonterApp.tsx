@@ -342,7 +342,13 @@ function StatCard({ title, value, icon: Icon, hint, trend }: StatCardProps) {
   );
 }
 
-function EmptyState({ title, desc, action }) {
+type EmptyStateProps = {
+  title: string;
+  desc: string;
+  action?: React.ReactNode;
+};
+
+function EmptyState({ title, desc, action }: EmptyStateProps) {
   return (
     <div className="rounded-2xl border bg-card p-8 text-center shadow-sm">
       <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border bg-background">
