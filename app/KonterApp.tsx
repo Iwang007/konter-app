@@ -709,10 +709,8 @@ function UpsertProduct(patch: any) {
  function addSale(sale: any) {
   setState((prev: any) => {
     // ...
-  });
-}
       // update stock for aksesoris only
-      const nextProducts = prev.products.map((p) => {
+      const nextProducts = prev.products.map((p: any) => {
         if (sale.tipe !== "Aksesoris") return p;
         const it = sale.items?.find((x) => x.productId === p.id);
         if (!it) return p;
