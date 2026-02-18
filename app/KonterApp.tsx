@@ -659,7 +659,9 @@ async function adjustStockInDB(idv: string, delta: number) {
   }, [globalQ, state.products, state.customers, state.serviceOrders]);
 
   // ---------- actions ----------
-  function upsertProduct(patch) {
+  type ProductPatch = Partial<Product> & Pick<Product, "id">;
+
+function UpsertProduct(patch: ProductPatch) {
     setState((prev) => {
       const exists = prev.products.some((p) => p.id === patch.id);
       const next = {
