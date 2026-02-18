@@ -309,7 +309,17 @@ function useLocalState() {
 }
 
 // ---------- small UI helpers ----------
-function StatCard({ title, value, icon: Icon, hint, trend }) {
+type StatCardTrend = { delta: number };
+
+type StatCardProps = {
+  title: string;
+  value: React.ReactNode;
+  icon?: React.ElementType;
+  hint?: string;
+  trend?: StatCardTrend;
+};
+
+function StatCard({ title, value, icon: Icon, hint, trend }: StatCardProps) {
   return (
     <Card className="rounded-2xl shadow-sm">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
