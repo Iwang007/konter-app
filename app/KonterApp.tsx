@@ -140,10 +140,10 @@ function downloadJSON(filename: string, data: unknown) {
   URL.revokeObjectURL(url);
 }
 
-function parseJSONSafe(s, fallback) {
+function parseJSONSafe<T>(s: string, fallback: T): T {
   try {
-    const x = JSON.parse(s);
-    return x ?? fallback;
+    const x = JSON.parse(s) as T;
+    return (x ?? fallback) as T;
   } catch {
     return fallback;
   }
