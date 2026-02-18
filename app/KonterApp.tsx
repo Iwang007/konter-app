@@ -740,18 +740,6 @@ function upsertService(patch: ServiceOrderPatch) {
     };
   });
 }
-  function upsertService(patch) {
-    setState((prev) => {
-      const exists = prev.serviceOrders.some((s) => s.id === patch.id);
-      return {
-        ...prev,
-        serviceOrders: exists
-          ? prev.serviceOrders.map((s) => (s.id === patch.id ? { ...s, ...patch } : s))
-          : [{ ...patch, createdAt: Date.now() }, ...prev.serviceOrders],
-      };
-    });
-  }
-
   function deleteService(idv) {
     setState((prev) => ({ ...prev, serviceOrders: prev.serviceOrders.filter((s) => s.id !== idv) }));
   }
