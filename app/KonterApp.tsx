@@ -111,8 +111,8 @@ function id(prefix = "ID") {
     .slice(-5)}`;
 }
 
-function rupiah(n) {
-  const x = Number(n || 0);
+function rupiah(n: number | string | null | undefined) {
+  const x = Number(n ?? 0);
   return x.toLocaleString("id-ID", { style: "currency", currency: "IDR" });
 }
 
