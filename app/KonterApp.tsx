@@ -116,8 +116,8 @@ function rupiah(n: number | string | null | undefined) {
   return x.toLocaleString("id-ID", { style: "currency", currency: "IDR" });
 }
 
-function clampNum(v, min = 0) {
-  const n = Number(String(v).replace(/[^0-9.-]/g, ""));
+function clampNum(v: string | number | null | undefined, min: number = 0) {
+  const n = Number(String(v ?? "").replace(/[^0-9.-]/g, ""));
   if (Number.isNaN(n)) return min;
   return n < min ? min : n;
 }
