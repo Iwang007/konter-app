@@ -688,17 +688,17 @@ function UpsertProduct(patch: any) {
   }));
 }
 
-  function upsertCustomer(patch) {
-    setState((prev) => {
-      const exists = prev.customers.some((c) => c.id === patch.id);
-      return {
-        ...prev,
-        customers: exists
-          ? prev.customers.map((c) => (c.id === patch.id ? { ...c, ...patch } : c))
-          : [{ ...patch, createdAt: Date.now() }, ...prev.customers],
-      };
-    });
-  }
+  function upsertCustomer(patch: any) {
+  setState((prev: any) => {
+    const exists = prev.customers.some((c: any) => c.id === patch.id);
+    return {
+      ...prev,
+      customers: exists
+        ? prev.customers.map((c: any) => (c.id === patch.id ? { ...c, ...patch } : c))
+        : [{ ...patch }, ...prev.customers],
+    };
+  });
+}
 
   function deleteCustomer(idv) {
     setState((prev) => ({ ...prev, customers: prev.customers.filter((c) => c.id !== idv) }));
