@@ -674,9 +674,12 @@ function UpsertProduct(patch: any) {
     });
   }
 
-  function deleteProduct(idv) {
-    setState((prev) => ({ ...prev, products: prev.products.filter((p) => p.id !== idv) }));
-  }
+  function deleteProduct(idv: string) {
+  setState((prev: any) => ({
+    ...prev,
+    products: prev.products.filter((p: any) => p.id !== idv),
+  }));
+}
 
   function upsertCustomer(patch) {
     setState((prev) => {
