@@ -700,10 +700,12 @@ function UpsertProduct(patch: any) {
   });
 }
 
-  function deleteCustomer(idv) {
-    setState((prev) => ({ ...prev, customers: prev.customers.filter((c) => c.id !== idv) }));
-  }
-
+  function deleteCustomer(idv: string) {
+  setState((prev: any) => ({
+    ...prev,
+    customers: prev.customers.filter((c: any) => c.id !== idv),
+  }));
+}
   function addSale(sale) {
     setState((prev) => {
       // update stock for aksesoris only
