@@ -727,9 +727,12 @@ function UpsertProduct(patch: any) {
     });
   }
 
-  function deleteSale(idv) {
-    setState((prev) => ({ ...prev, sales: prev.sales.filter((s) => s.id !== idv) }));
-  }
+ function deleteSale(idv: string | number) {
+  setState((prev: any) => ({
+    ...prev,
+    sales: prev.sales.filter((s: any) => s.id !== idv),
+  }));
+}
 
   function upsertService(patch) {
     setState((prev) => {
