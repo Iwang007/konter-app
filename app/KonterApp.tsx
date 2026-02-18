@@ -706,8 +706,11 @@ function UpsertProduct(patch: any) {
     customers: prev.customers.filter((c: any) => c.id !== idv),
   }));
 }
-  function addSale(sale) {
-    setState((prev) => {
+ function addSale(sale: any) {
+  setState((prev: any) => {
+    // ...
+  });
+}
       // update stock for aksesoris only
       const nextProducts = prev.products.map((p) => {
         if (sale.tipe !== "Aksesoris") return p;
